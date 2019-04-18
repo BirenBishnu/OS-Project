@@ -80,3 +80,17 @@ totTurnAroundTime=processFun(q1,n1,Que1);
 avgTurnAroundTime=totTurnAroundTime/n1;
 totBurstTime=calTotBurstTime(q1,n1);
 avgWaitingTime=(totTurnAroundTime-totBurstTime)/n1;
+printf("\nFor Queue1");
+printf("\nAverage Turn Around Time: %.2f\n", avgTurnAroundTime);
+printf("\nAverage Waiting Time: %.2f\n",avgWaitingTime);
+printf("\n\n");
+totTurnAroundTime=processFun(q2,n2,Que2);
+avgTurnAroundTime=totTurnAroundTime/n2;
+totBurstTime=calTotBurstTime(q2,n2);
+avgWaitingTime=(totTurnAroundTime-totBurstTime)/n2;
+printf("\nFor Queue2");
+printf("\nAverage Turn Around Time: %.2f\n", avgTurnAroundTime);
+printf("\nAverage Waiting Time: %.2f\n",avgWaitingTime);
+printf("\n\n");
+return 0;
+}
