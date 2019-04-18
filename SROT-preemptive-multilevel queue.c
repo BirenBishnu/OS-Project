@@ -62,3 +62,21 @@ scanf("%d",&(q2+i)->burstTime);
 printf("\n");
 }
 printf("\n");
+printf("\nDetais Of Processes in Queue1\n");
+printf("\n Process: | Arrival Time: | Burst Time: | ");
+for(i=0;i<n1;i++)
+{
+printf("\n P%d %d %d ",(q1+i)->pid,(q1+i)->arrvalTime,(q1+i)->burstTime);
+}
+printf("\n");
+printf("\nDetais Of Processes in Queue2\n");
+printf("\n Process: | Arival Time: | Burst Time: | ");
+for(i=0;i<n2;i++)
+{
+printf("\n P%d %d %d ",(q2+i)->pid,(q2+i)->arrvalTime,(q2+i)->burstTime);
+}
+printf("\n\n");
+totTurnAroundTime=processFun(q1,n1,Que1);
+avgTurnAroundTime=totTurnAroundTime/n1;
+totBurstTime=calTotBurstTime(q1,n1);
+avgWaitingTime=(totTurnAroundTime-totBurstTime)/n1;
