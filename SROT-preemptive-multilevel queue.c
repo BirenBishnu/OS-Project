@@ -94,3 +94,63 @@ printf("\nAverage Waiting Time: %.2f\n",avgWaitingTime);
 printf("\n\n");
 return 0;
 }
+float processFun(struct Queue* q, int size,struct Queue* Que)
+{
+int timeCountr=0,flag=0;
+float tAt=0,wT=0;
+while(!checkAllProFinsh(Que,size))
+{
+if(flag==0)
+{
+minArrTime(Que,size);
+timeCountr+=Que->arrvalTime;
+flag++;
+}
+else
+{
+minBurstTime(Que,size);
+}
+int chk=0;
+for(int i=0;i<size;i++)
+{
+if((Que+i)->burstTime!=0 && timeCountr>=(Que+i)->arrvalTime)
+{
+chk=1;
+break;
+}
+}
+if(chk==0)
+{
+minArrTime(Que,size);
+for(int i=0;i<size;i++)
+{
+if((Que+i)->burstTime!=0)
+{
+int x=timeCountr;
+timeCountr+=((Que+i)->arrvalTime)-x;
+break;
+}
+}
+}
+for(int i=0;i<size;i++)
+{
+if((Que+i)->burstTime!=0 && timeCountr>=(Que+i)->arrvalTime)
+{
+if((Que+i)->burstTime>2)
+{
+(Que+i)->burstTime=(Que+i)->burstTime-2;
+timeCountr+=2;
+}
+else
+{
+timeCountr+=(Que+i)->burstTime;
+(Que+i)->burstTime=0;
+int x=timeCountr;
+tAt+=x-((Que+i)->arrvalTime);
+}
+break; 
+}
+}
+}
+return tAt;
+}
