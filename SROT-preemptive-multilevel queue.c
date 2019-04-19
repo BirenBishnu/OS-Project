@@ -155,10 +155,6 @@ break;
 return at;
 }
 
-
-
-
-
 void minArrTime(struct Q* que,int size)
 {
 int i,j;
@@ -192,6 +188,42 @@ temp=(que+j)->arvalTime;
 (que+j)->arvalTime=(que+j+1)->arvalTime;
 (que+j+1)->arvalTime=temp;
 }
+}
+}
+}
+}
+
+int checkAllProFinish(struct Q* Que,int size)
+{
+int flg=1;
+for(int i=0;i<size;i++)
+{
+if((Que+i)->bTime!=0)
+{
+flg=0;
+return flg;
+} 
+}
+return flg;
+}
+void minbTime(struct Q* que,int size)
+{
+int i,j;
+for(i=1;i<=size-1;i++)
+{
+for(j=0;j<size-1;j++)
+{
+if(((que+j)->bTime)>((que+j+1)->bTime))
+{
+int temp=(que+j)->bTime;
+(que+j)->bTime=(que+j+1)->bTime;
+(que+j+1)->bTime=temp;
+temp=(que+j)->ad;
+(que+j)->ad=(que+j+1)->ad;
+(que+j+1)->ad=temp;
+temp=(que+j)->arvalTime;
+(que+j)->arvalTime=(que+j+1)->arvalTime;
+(que+j+1)->arvalTime=temp; 
 }
 }
 }
