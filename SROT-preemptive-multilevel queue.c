@@ -11,7 +11,7 @@ float processFun(struct Q* q, int size,struct Q* Que);
 void minArrTime(struct Q* que,int size);
 void minbTime(struct Q* que,int size);
 int checkAllProFinish(struct Q* Que,int size);
-float calTotbTime(struct Q* Que,int n)
+float calTotalbTime(struct Q* Que,int n)
 {
 float bTime=0;
 for(int i=0;i<n;i++)
@@ -43,11 +43,11 @@ scanf("%d",&(q1+i)->bTime);
 printf("\n");
 }
 printf("No of Processes in Queue2: ");
-scanf("%d",&n2);
+scanf("%d",&a2);
 struct Q *q2=(struct Q*)malloc(a1*sizeof(struct Q));
 struct Q *Que2=(struct Q*)malloc(a1*sizeof(struct Q));
 printf("\nEnter the following Details for Processes in Queue2:\n");
-for(i=0;i<n2;i++)
+for(i=0;i<a2;i++)
 {
 printf("For Process %d:\n",i+1);
 (q2+i)->ad=i+1;
@@ -71,14 +71,14 @@ printf("\n P%d %d %d ",(q1+i)->ad,(q1+i)->arvalTime,(q1+i)->bTime);
 printf("\n");
 printf("\nFor -> Details Of Processes in Queue2\n");
 printf("\n Process: || Arrival Time: || Burst Time: || ");
-for(i=0;i<n2;i++)
+for(i=0;i<a2;i++)
 {
 printf("\n P%d %d %d ",(q2+i)->ad,(q2+i)->arvalTime,(q2+i)->bTime);
 }
 printf("\n\n");
 totalTurnAroundTime=processFun(q1,a1,Que1);
 averageTurnAroundTime=totalTurnAroundTime/a1;
-totalbTime=caltotalbTime(q1,a1);
+totalbTime=calTotalbTime(q1,a1);
 averageWaitTime=(totalTurnAroundTime-totalbTime)/a1;
 printf("\nFor Queue1");
 printf("\nAverage Turn Around Time: %.2f\n", averageTurnAroundTime);
@@ -86,7 +86,7 @@ printf("\nAverage Waiting Time: %.2f\n",averageWaitTime);
 printf("\n\n");
 totalTurnAroundTime=processFun(q2,a2,Que2);
 averageTurnAroundTime=totalTurnAroundTime/a2;
-totalbTime=caltotalbTime(q2,a2);
+totalbTime=calTotalbTime(q2,a2);
 averageWaitTime=(totalTurnAroundTime-totalbTime)/a2;
 printf("\nFor Queue2");
 printf("\nAverage Turn Around Time: %.2f\n", averageTurnAroundTime);
@@ -154,6 +154,10 @@ break;
 }
 return at;
 }
+
+
+
+
 
 void minArrTime(struct Q* que,int size)
 {
