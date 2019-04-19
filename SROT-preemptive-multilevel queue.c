@@ -1,3 +1,6 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
 struct Q
 {
 int ad;
@@ -150,4 +153,42 @@ break;
 }
 }
 return at;
+}
+
+void minArrTime(struct Q* que,int size)
+{
+int i,j;
+for(i=1;i<=size-1;i++)
+{
+for(j=0;j<size-1;j++)
+{
+if(((que+j)->arvalTime)>((que+j+1)->arvalTime))
+{
+int temp=(que+j)->arvalTime;
+(que+j)->arvalTime=(que+j+1)->arvalTime;
+(que+j+1)->arvalTime=temp;
+temp=(que+j)->bTime;
+(que+j)->bTime=(que+j+1)->bTime;
+(que+j+1)->bTime=temp;
+temp=(que+j)->ad;
+(que+j)->ad=(que+j+1)->ad;
+(que+j+1)->ad=temp;
+}
+else if(((que+j)->arvalTime)==((que+j+1)->arvalTime))
+{
+if(((que+j)->bTime)>((que+j+1)->bTime))
+{
+int temp=(que+j)->bTime;
+(que+j)->bTime=(que+j+1)->bTime;
+(que+j+1)->bTime=temp;
+temp=(que+j)->ad;
+(que+j)->ad=(que+j+1)->ad;
+(que+j+1)->ad=temp;
+temp=(que+j)->arvalTime;
+(que+j)->arvalTime=(que+j+1)->arvalTime;
+(que+j+1)->arvalTime=temp;
+}
+}
+}
+}
 }
