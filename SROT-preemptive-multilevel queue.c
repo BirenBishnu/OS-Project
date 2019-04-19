@@ -3,7 +3,7 @@
 #include<unistd.h>
 struct Q
 {
-int ad;
+int ad,i;
 int bTime;
 int arvalTime;
 };
@@ -13,10 +13,14 @@ void minbTime(struct Q* que,int size);
 int checkAllProFinish(struct Q* Que,int size);
 float calTotalbTime(struct Q* Que,int n)
 {
+	int i;
 float bTime=0;
-for(int i=0;i<n;i++)
+for(i=0;i<n;i++)
+{
 bTime+=(Que+i)->bTime;
+}
 return bTime;
+
 }
 int main()
 {
@@ -110,8 +114,8 @@ else
 {
 minbTime(Que,size);
 }
-int chk=0;
-for(int i=0;i<size;i++)
+int chk=0,i;
+for(i=0;i<size;i++)
 {
 if((Que+i)->bTime!=0 && timeCounter>=(Que+i)->arvalTime)
 {
@@ -122,7 +126,7 @@ break;
 if(chk==0)
 {
 minArrTime(Que,size);
-for(int i=0;i<size;i++)
+for(i=0;i<size;i++)
 {
 if((Que+i)->bTime!=0)
 {
@@ -132,7 +136,7 @@ break;
 }
 }
 }
-for(int i=0;i<size;i++)
+for(i=0;i<size;i++)
 {
 if((Que+i)->bTime!=0 && timeCounter>=(Que+i)->arvalTime)
 {
@@ -195,8 +199,8 @@ temp=(que+j)->arvalTime;
 
 int checkAllProFinish(struct Q* Que,int size)
 {
-int flg=1;
-for(int i=0;i<size;i++)
+int flg=1,i;
+for(i=0;i<size;i++)
 {
 if((Que+i)->bTime!=0)
 {
