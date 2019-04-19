@@ -1,119 +1,116 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<unistd.h>
-struct Queue
+struct Q
 {
-int pid;
-int arrvalTime;
-int burstTime;
+int ad;
+int bTime;
+int arvalTime;
 };
-float processFun(struct Queue* q, int size,struct Queue* Que);
-void minArrTime(struct Queue* que,int size);
-void minBurstTime(struct Queue* que,int size);
-int checkAllProFinsh(struct Queue* Que,int size);
-float calTotBurstTime(struct Queue* Que,int n)
+float processFun(struct Q* q, int size,struct Q* Que);
+void minArrTime(struct Q* que,int size);
+void minbTime(struct Q* que,int size);
+int checkAllProFinish(struct Q* Que,int size);
+float calTotbTime(struct Q* Que,int n)
 {
-float burstTime=0;
+float bTime=0;
 for(int i=0;i<n;i++)
-burstTime+=(Que+i)->burstTime;
-return burstTime;
+bTime+=(Que+i)->bTime;
+return bTime;
 }
 int main()
 {
-int i,n1,n2;
-float totTurnAroundTime,avgTurnAroundTime,avgWaitingTime,totBurstTime;
-printf("\nSHORTEST JOB REMAINING FIRST (WITH PREEMPTIVE and MULTILEVEL QUEUE)\n");
+int i,a1,a2;
+float totalTurnAroundTime, averageTurnAroundTime, averageWaitTime, totalbTime;
+printf("\nShortest Job Remaining First (With Preemptive and Multilevel Queue)\n");
 printf("\nNo of Processes in Queue1: ");
-scanf("%d",&n1);
-struct Queue *q1=(struct Queue*)malloc(n1*sizeof(struct Queue));
-struct Queue *Que1=(struct Queue*)malloc(n1*sizeof(struct Queue));
+scanf("%d",&a1);
+struct Q *q1=(struct Q*)malloc(a1*sizeof(struct Q));
+struct Q *Que1=(struct Q*)malloc(a1*sizeof(struct Q));
 printf("\nEnter the following Details for Processes in Queue1:\n");
-for(i=0;i<n1;i++)
+for(i=0;i<a1;i++)
 {
 printf("For Process %d:\n",i+1);
-(q1+i)->pid=i+1;
-(Que1+i)->pid=i+1;
-printf("PId: %d\n", (q1+i)->pid);
+(q1+i)->ad=i+1;
+(Que1+i)->ad=i+1;
+printf("ad: %d\n", (q1+i)->ad);
 printf("Arrival Time: ");
-scanf("%d",&(q1+i)->arrvalTime);
-(Que1+i)->arrvalTime=(q1+i)->arrvalTime;
+scanf("%d",&(q1+i)->arvalTime);
+(Que1+i)->arvalTime=(q1+i)->arvalTime;
 printf("Burst Time: ");
-scanf("%d",&(q1+i)->burstTime);
-(Que1+i)->burstTime=(q1+i)->burstTime;
+scanf("%d",&(q1+i)->bTime);
+(Que1+i)->bTime=(q1+i)->bTime;
 printf("\n");
 }
 printf("No of Processes in Queue2: ");
 scanf("%d",&n2);
-struct Queue *q2=(struct Queue*)malloc(n1*sizeof(struct Queue));
-struct Queue *Que2=(struct Queue*)malloc(n1*sizeof(struct Queue));
+struct Q *q2=(struct Q*)malloc(a1*sizeof(struct Q));
+struct Q *Que2=(struct Q*)malloc(a1*sizeof(struct Q));
 printf("\nEnter the following Details for Processes in Queue2:\n");
 for(i=0;i<n2;i++)
 {
 printf("For Process %d:\n",i+1);
-(q2+i)->pid=i+1;
-(Que2+i)->pid=i+1;
-printf("PId: %d\n", (q2+i)->pid);
+(q2+i)->ad=i+1;
+(Que2+i)->ad=i+1;
+printf("ad: %d\n", (q2+i)->ad);
 printf("Arrival Time: ");
-scanf("%d",&(q2+i)->arrvalTime);
-(Que2+i)->arrvalTime=(q2+i)->arrvalTime;
+scanf("%d",&(q2+i)->arvalTime);
+(Que2+i)->arvalTime=(q2+i)->arvalTime;
 printf("Burst Time: ");
-scanf("%d",&(q2+i)->burstTime);
-(Que2+i)->burstTime=(q2+i)->burstTime;
+scanf("%d",&(q2+i)->bTime);
+(Que2+i)->bTime=(q2+i)->bTime;
 printf("\n");
 }
 printf("\n");
-printf("\nDetais Of Processes in Queue1\n");
-printf("\n Process: | Arrival Time: | Burst Time: | ");
-for(i=0;i<n1;i++)
+printf("\nFor -> Details Of Processes in Queue1\n");
+printf("\n Process: || Arrival Time: || Burst Time: || ");
+for(i=0;i<a1;i++)
 {
-printf("\n P%d %d %d ",(q1+i)->pid,(q1+i)->arrvalTime,(q1+i)->burstTime);
+printf("\n P%d %d %d ",(q1+i)->ad,(q1+i)->arvalTime,(q1+i)->bTime);
 }
 printf("\n");
-printf("\nDetais Of Processes in Queue2\n");
-printf("\n Process: | Arival Time: | Burst Time: | ");
+printf("\nFor -> Details Of Processes in Queue2\n");
+printf("\n Process: || Arrival Time: || Burst Time: || ");
 for(i=0;i<n2;i++)
 {
-printf("\n P%d %d %d ",(q2+i)->pid,(q2+i)->arrvalTime,(q2+i)->burstTime);
+printf("\n P%d %d %d ",(q2+i)->ad,(q2+i)->arvalTime,(q2+i)->bTime);
 }
 printf("\n\n");
-totTurnAroundTime=processFun(q1,n1,Que1);
-avgTurnAroundTime=totTurnAroundTime/n1;
-totBurstTime=calTotBurstTime(q1,n1);
-avgWaitingTime=(totTurnAroundTime-totBurstTime)/n1;
+totalTurnAroundTime=processFun(q1,a1,Que1);
+averageTurnAroundTime=totalTurnAroundTime/a1;
+totalbTime=caltotalbTime(q1,a1);
+averageWaitTime=(totalTurnAroundTime-totalbTime)/a1;
 printf("\nFor Queue1");
-printf("\nAverage Turn Around Time: %.2f\n", avgTurnAroundTime);
-printf("\nAverage Waiting Time: %.2f\n",avgWaitingTime);
+printf("\nAverage Turn Around Time: %.2f\n", averageTurnAroundTime);
+printf("\nAverage Waiting Time: %.2f\n",averageWaitTime);
 printf("\n\n");
-totTurnAroundTime=processFun(q2,n2,Que2);
-avgTurnAroundTime=totTurnAroundTime/n2;
-totBurstTime=calTotBurstTime(q2,n2);
-avgWaitingTime=(totTurnAroundTime-totBurstTime)/n2;
+totalTurnAroundTime=processFun(q2,a2,Que2);
+averageTurnAroundTime=totalTurnAroundTime/a2;
+totalbTime=caltotalbTime(q2,a2);
+averageWaitTime=(totalTurnAroundTime-totalbTime)/a2;
 printf("\nFor Queue2");
-printf("\nAverage Turn Around Time: %.2f\n", avgTurnAroundTime);
-printf("\nAverage Waiting Time: %.2f\n",avgWaitingTime);
+printf("\nAverage Turn Around Time: %.2f\n", averageTurnAroundTime);
+printf("\nAverage Waiting Time: %.2f\n",averageWaitTime);
 printf("\n\n");
 return 0;
 }
-float processFun(struct Queue* q, int size,struct Queue* Que)
+float processFun(struct Q* q, int size,struct Q* Que)
 {
-int timeCountr=0,flag=0;
-float tAt=0,wT=0;
-while(!checkAllProFinsh(Que,size))
+int timeCounter=0,flg=0;
+float at=0,wat=0;
+while(!checkAllProFinish(Que,size))
 {
-if(flag==0)
+if(flg==0)
 {
 minArrTime(Que,size);
-timeCountr+=Que->arrvalTime;
-flag++;
+timeCounter+=Que->arvalTime;
+flg++;
 }
 else
 {
-minBurstTime(Que,size);
+minbTime(Que,size);
 }
 int chk=0;
 for(int i=0;i<size;i++)
 {
-if((Que+i)->burstTime!=0 && timeCountr>=(Que+i)->arrvalTime)
+if((Que+i)->bTime!=0 && timeCounter>=(Que+i)->arvalTime)
 {
 chk=1;
 break;
@@ -124,33 +121,33 @@ if(chk==0)
 minArrTime(Que,size);
 for(int i=0;i<size;i++)
 {
-if((Que+i)->burstTime!=0)
+if((Que+i)->bTime!=0)
 {
-int x=timeCountr;
-timeCountr+=((Que+i)->arrvalTime)-x;
+int x=timeCounter;
+timeCounter+=((Que+i)->arvalTime)-x;
 break;
 }
 }
 }
 for(int i=0;i<size;i++)
 {
-if((Que+i)->burstTime!=0 && timeCountr>=(Que+i)->arrvalTime)
+if((Que+i)->bTime!=0 && timeCounter>=(Que+i)->arvalTime)
 {
-if((Que+i)->burstTime>2)
+if((Que+i)->bTime>2)
 {
-(Que+i)->burstTime=(Que+i)->burstTime-2;
-timeCountr+=2;
+(Que+i)->bTime=(Que+i)->bTime-2;
+timeCounter+=2;
 }
 else
 {
-timeCountr+=(Que+i)->burstTime;
-(Que+i)->burstTime=0;
-int x=timeCountr;
-tAt+=x-((Que+i)->arrvalTime);
+timeCounter+=(Que+i)->bTime;
+(Que+i)->bTime=0;
+int x=timeCounter;
+at+=x-((Que+i)->arvalTime);
 }
 break; 
 }
 }
 }
-return tAt;
+return at;
 }
